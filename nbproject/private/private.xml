@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/web/index.html</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/src/java/controller/AppConfig.java</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/src/java/model/Usuario.java</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/src/java/framework/DataAccessObject.java</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/src/java/controller/FrontController.java</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/src/java/framework/DataBaseConnections.java</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/src/java/framework/app-config.xml</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/web/META-INF/context.xml</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/web/app/index.jsp</file>
+            <file>file:/home/aluno/Área%20de%20trabalho/SistemaPedidos/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
