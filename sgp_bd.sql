@@ -14,16 +14,16 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `sgp_bd` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema sgp_bd
 -- -----------------------------------------------------
-USE `mydb` ;
+USE `sgp_bd` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`usuarios`
+-- Table `sgp_bd`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `sgp_bd`.`usuarios` (
   `nome_usuario` VARCHAR(50) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`nome_usuario`))

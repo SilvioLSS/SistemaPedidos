@@ -90,8 +90,8 @@
             <h1>Sistema Gerenciador de Pedidos</h1>
             <p>O lugar ideal para você gerenciar os seus pedidos de forma rápida e organizada.</p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="#" class="btn btn-primary-custom px-4 py-2 text-white fw-semibold">Login</a>
-                <a href="#" class="btn btn-secondary-custom px-4 py-2 text-white fw-semibold">Cadastre-se</a>
+                <a href="app/home/login.jsp" class="btn btn-primary-custom px-4 py-2 text-white fw-semibold">Login</a>
+                <a href="app/home/cadastro.jsp" class="btn btn-secondary-custom px-4 py-2 text-white fw-semibold">Cadastre-se</a>
             </div>
         </div>
 
