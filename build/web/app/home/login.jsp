@@ -68,8 +68,8 @@
                     <script>
                         alert("<%= msg%>");
                     </script>
-                 }
-
+        <%         }
+                 
             HttpSession sessao = request.getSession(false);
             if ((sessao != null) && (sessao.getAttribute("usuario") != null)){
                 response.sendRedirect(request.getContextPath() + "/app/home/home.jsp");
