@@ -1,0 +1,74 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sansation&family=Space+Mono&family=Tomorrow:wght@500&display=swap');
+
+body {
+    background-color: #151515;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+}
+
+h1 {
+    color: #3a24d9;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: "Tomorrow", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+p {
+    color: #cfcfcf;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-family: "Stack Sans Headline", sans-serif;
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.btn-primary-custom {
+    background-color: #3a24d9;
+    border: none;
+    transition: 0.2s;
+    font-family: "Sansation", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.btn-primary-custom:hover {
+    background-color: #4b33ff;
+    transform: scale(1.10)
+}
+
+.btn-secondary-custom {
+    background-color: #1b6a18;
+    border: none;
+    transition: 0.2s;
+    font-family: "Sansation", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.btn-secondary-custom:hover {
+    background-color: #268a23;
+    transform: scale(1.10)
+}
+
+footer {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+}

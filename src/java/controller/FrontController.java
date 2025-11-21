@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import logtrack.ExceptionLogTrack;
+import model.Produto;
 import model.Usuario;
 
 public class FrontController extends HttpServlet {
@@ -25,6 +26,10 @@ public class FrontController extends HttpServlet {
 
                 case "logout":
                     doGetLogout(request, response);
+                    break;
+                    
+                case "produto":
+                    doGetProduto(request, response);
                     break;
                    
                 default:
@@ -58,6 +63,10 @@ public class FrontController extends HttpServlet {
                 case "cadastro":
                     doPostCadastro(request, response);
                     break;
+                    
+                case "produto":
+                    doPostProduto(request, response);
+                    break;
 
                 default:
                     doDefault(request, response);
@@ -75,13 +84,31 @@ public class FrontController extends HttpServlet {
         HttpSession sessao = request.getSession(false);
         if (sessao != null) {
             sessao.removeAttribute("usuario");
-            sessao.removeAttribute("tipo_usuario");
 
             sessao.invalidate();
         }
 
         response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
 
+    }
+    
+    private void doGetProduto(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    
+        String action = request.getParameter("action");
+        
+        if ( action != null && action.equals("delete") ){
+            
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            Produto p = new Produto();
+            p.setId(id);
+            
+            p.delete();
+                                    
+        }
+        
+        response.sendRedirect( request.getContextPath() + "/app/produtos/produtos.jsp");
+        
     }
 
     private void doPostLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -106,7 +133,8 @@ public class FrontController extends HttpServlet {
 
             sessao = request.getSession(true);
 
-            sessao.setAttribute("usuario", "(" + usuario.getNomeUsuario() + ")");
+            sessao.setAttribute("usuario", usuario.getNomeUsuario());
+
 
             response.sendRedirect(request.getContextPath() + "/app/home/home.jsp");
 
@@ -142,6 +170,38 @@ public class FrontController extends HttpServlet {
         novoUsuario.save();
 
         response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+    }
+    
+    private void doPostProduto(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
+        String action = request.getParameter("action");
+        
+        String nomeProduto = request.getParameter("nome");
+        Float precoProduto = Float.parseFloat(request.getParameter("preco"));
+
+        HttpSession session = request.getSession(false);
+        String usuarioLogado = (String) session.getAttribute("usuario");
+
+        if (usuarioLogado == null) {
+            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+            return;
+        }
+
+        Produto p = new Produto();
+        
+        if( action.equals("update") ){
+            int id = Integer.parseInt(request.getParameter("id"));
+            p.setId(id);
+            p.load();
+        }
+        
+        p.setNome(nomeProduto);
+        p.setPreco(precoProduto);
+        p.setUsuarios_nome_usuario(usuarioLogado);
+
+        p.save();
+
+        response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
     }
 
     private void doDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {

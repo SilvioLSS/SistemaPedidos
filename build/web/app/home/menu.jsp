@@ -1,0 +1,43 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>menu</title>
+    </head>
+    <body>
+
+        <%
+
+            String usuarioLogado = (String) session.getAttribute("usuario");
+
+            if (usuarioLogado == null) {
+                response.sendRedirect(request.getContextPath() + "/home/login.jsp");
+            }
+
+        %>
+
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Gerenciador de Pedidos</a>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Produtos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Receitas</a></li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%=request.getContextPath()%>/home?task=logout">
+                                Logout, <%= session.getAttribute("usuario")%>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </body>
+</html>
