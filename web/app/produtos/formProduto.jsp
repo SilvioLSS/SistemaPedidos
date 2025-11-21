@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto - Sistema Gerenciador de Pedidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/app/style/formProduto.css"/>
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/app/style/forms.css"/>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/app/style/menu.css"/>
 </head>
 <body>

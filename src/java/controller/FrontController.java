@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import logtrack.ExceptionLogTrack;
+import model.Cliente;
 import model.Produto;
 import model.Usuario;
 
@@ -27,17 +28,20 @@ public class FrontController extends HttpServlet {
                 case "logout":
                     doGetLogout(request, response);
                     break;
-                    
+
                 case "produto":
                     doGetProduto(request, response);
                     break;
-                   
+
+                case "cliente":
+                    doGetCliente(request, response);
+                    break;
+
                 default:
                     doDefault(request, response);
-                    
-                    
+
             }
-            
+
         } catch (Exception ex) {
             ExceptionLogTrack.getInstance().addLog(ex);
         }
@@ -63,9 +67,13 @@ public class FrontController extends HttpServlet {
                 case "cadastro":
                     doPostCadastro(request, response);
                     break;
-                    
+
                 case "produto":
                     doPostProduto(request, response);
+                    break;
+                
+                case "cliente":
+                    doPostCliente(request, response);
                     break;
 
                 default:
@@ -78,7 +86,7 @@ public class FrontController extends HttpServlet {
         }
 
     }
-    
+
     private void doGetLogout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         HttpSession sessao = request.getSession(false);
@@ -91,24 +99,43 @@ public class FrontController extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
 
     }
-    
-    private void doGetProduto(HttpServletRequest request, HttpServletResponse response) throws Exception{
-    
+
+    private void doGetProduto(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         String action = request.getParameter("action");
-        
-        if ( action != null && action.equals("delete") ){
-            
+
+        if (action != null && action.equals("delete")) {
+
             int id = Integer.parseInt(request.getParameter("id"));
-            
+
             Produto p = new Produto();
             p.setId(id);
-            
+
             p.delete();
-                                    
+
         }
-        
-        response.sendRedirect( request.getContextPath() + "/app/produtos/produtos.jsp");
-        
+
+        response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
+
+    }
+    
+        private void doGetCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String action = request.getParameter("action");
+
+        if (action != null && action.equals("delete")) {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Cliente c = new Cliente();
+            c.setId(id);
+
+            c.delete();
+
+        }
+
+        response.sendRedirect(request.getContextPath() + "/app/clientes/clientes.jsp");
+
     }
 
     private void doPostLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -135,7 +162,6 @@ public class FrontController extends HttpServlet {
 
             sessao.setAttribute("usuario", usuario.getNomeUsuario());
 
-
             response.sendRedirect(request.getContextPath() + "/app/home/home.jsp");
 
         } else {
@@ -157,7 +183,7 @@ public class FrontController extends HttpServlet {
             request.getRequestDispatcher("/app/home/cadastro.jsp").forward(request, response);
             return;
         }
-        
+
         if (!senha.equals(confirmacaoSenha)) {
             request.setAttribute("msg", "Senhas não coincidem!");
             request.getRequestDispatcher("/app/home/cadastro.jsp").forward(request, response);
@@ -171,11 +197,11 @@ public class FrontController extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
     }
-    
+
     private void doPostProduto(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
+
         String action = request.getParameter("action");
-        
+
         String nomeProduto = request.getParameter("nome");
         Float precoProduto = Float.parseFloat(request.getParameter("preco"));
 
@@ -188,13 +214,13 @@ public class FrontController extends HttpServlet {
         }
 
         Produto p = new Produto();
-        
-        if( action.equals("update") ){
+
+        if (action.equals("update")) {
             int id = Integer.parseInt(request.getParameter("id"));
             p.setId(id);
             p.load();
         }
-        
+
         p.setNome(nomeProduto);
         p.setPreco(precoProduto);
         p.setUsuarios_nome_usuario(usuarioLogado);
@@ -202,6 +228,36 @@ public class FrontController extends HttpServlet {
         p.save();
 
         response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
+    }
+    
+        private void doPostCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String action = request.getParameter("action");
+
+        String nomeCliente = request.getParameter("nome");
+
+        HttpSession session = request.getSession(false);
+        String usuarioLogado = (String) session.getAttribute("usuario");
+
+        if (usuarioLogado == null) {
+            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+            return;
+        }
+
+        Cliente c = new Cliente();
+
+        if (action.equals("update")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            c.setId(id);
+            c.load();
+        }
+
+        c.setNome(nomeCliente);
+        c.setUsuarios_nome_usuario(usuarioLogado);
+
+        c.save();
+
+        response.sendRedirect(request.getContextPath() + "/app/clientes/clientes.jsp");
     }
 
     private void doDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {

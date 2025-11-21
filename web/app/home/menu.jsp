@@ -19,14 +19,14 @@
 
         <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Gerenciador de Pedidos</a>
+                <a class="navbar-brand" href="<%= request.getContextPath()%>/app/home/home.jsp">Gerenciador de Pedidos</a>
 
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
 
                         <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Produtos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/produtos/produtos.jsp">Produtos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/clientes/clientes.jsp">Clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Receitas</a></li>
 
                         <li class="nav-item">

@@ -43,7 +43,7 @@
                 <button type="submit" class="btn btn-primary-custom w-100 mt-2">Entrar</button>
 
                 <p class="mt-3 text-center">
-                    Não tem uma conta? <a href="cadastro.jsp">Cadastre-se</a>
+                    Não tem uma conta? <a href="<%= request.getContextPath()%>/app/home/cadastro.jsp">Cadastre-se</a>
                 </p>
             </form>
         </div>

@@ -43,7 +43,7 @@
         <button type="submit" class="btn btn-secondary-custom w-100 mt-2">Cadastrar</button>
 
         <p class="mt-3 text-center">
-            Já possui conta? <a href="login.jsp">Faça login</a>
+            Já possui conta? <a href="<%= request.getContextPath()%>/app/home/login.jsp">Faça login</a>
         </p>
     </form>
 </div>
