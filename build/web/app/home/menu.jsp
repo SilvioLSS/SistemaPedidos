@@ -1,12 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>menu</title>
-    </head>
-    <body>
-
         <%
 
             String usuarioLogado = (String) session.getAttribute("usuario");
@@ -27,7 +18,7 @@
                         <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/produtos/produtos.jsp">Produtos</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/clientes/clientes.jsp">Clientes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Receitas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/receitas/financas.jsp">Receitas</a></li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="<%=request.getContextPath()%>/home?task=logout">
@@ -38,6 +29,3 @@
                 </div>
             </div>
         </nav>
-
-    </body>
-</html>

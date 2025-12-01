@@ -32,7 +32,7 @@
                     <h3>Clientes</h3>
                 </div>
 
-                <div onclick="location.href = '#'" class="menu-card">
+                <div onclick="location.href = '<%=request.getContextPath()%>/app/receitas/financas.jsp'" class="menu-card">
                     <h3>Receitas</h3>
                 </div>
 

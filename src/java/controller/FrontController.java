@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import logtrack.ExceptionLogTrack;
 import model.Cliente;
+import model.Despesa;
 import model.Produto;
 import model.Usuario;
 
@@ -35,6 +36,10 @@ public class FrontController extends HttpServlet {
 
                 case "cliente":
                     doGetCliente(request, response);
+                    break;
+
+                case "despesa":
+                    doGetDespesa(request, response);
                     break;
 
                 default:
@@ -71,9 +76,13 @@ public class FrontController extends HttpServlet {
                 case "produto":
                     doPostProduto(request, response);
                     break;
-                
+
                 case "cliente":
                     doPostCliente(request, response);
+                    break;
+
+                case "despesa":
+                    doPostDespesa(request, response);
                     break;
 
                 default:
@@ -118,8 +127,8 @@ public class FrontController extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
 
     }
-    
-        private void doGetCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    private void doGetCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String action = request.getParameter("action");
 
@@ -135,6 +144,25 @@ public class FrontController extends HttpServlet {
         }
 
         response.sendRedirect(request.getContextPath() + "/app/clientes/clientes.jsp");
+
+    }
+
+    private void doGetDespesa(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String action = request.getParameter("action");
+
+        if (action != null && action.equals("delete")) {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Despesa d = new Despesa();
+            d.setId(id);
+
+            d.delete();
+
+        }
+
+        response.sendRedirect(request.getContextPath() + "/app/receitas/financas.jsp");
 
     }
 
@@ -229,8 +257,8 @@ public class FrontController extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
     }
-    
-        private void doPostCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    private void doPostCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String action = request.getParameter("action");
 
@@ -258,6 +286,40 @@ public class FrontController extends HttpServlet {
         c.save();
 
         response.sendRedirect(request.getContextPath() + "/app/clientes/clientes.jsp");
+    }
+
+    private void doPostDespesa(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String action = request.getParameter("action");
+
+        String nomeDespesa = request.getParameter("nome");
+        String dataCompra = request.getParameter("data_compra");
+        float valorTotal = Float.parseFloat(request.getParameter("valor_total"));
+
+        HttpSession session = request.getSession(false);
+        String usuarioLogado = (String) session.getAttribute("usuario");
+
+        if (usuarioLogado == null) {
+            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+            return;
+        }
+
+        Despesa d = new Despesa();
+
+        if (action.equals("update")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            d.setId(id);
+            d.load();
+        }
+
+        d.setNome(nomeDespesa);
+        d.setData_compra(dataCompra);
+        d.setValor_total(valorTotal);
+        d.setUsuarios_nome_usuario(usuarioLogado);
+
+        d.save();
+
+        response.sendRedirect(request.getContextPath() + "/app/receitas/financas.jsp");
     }
 
     private void doDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {

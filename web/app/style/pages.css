@@ -53,7 +53,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.tabela-produtos {
+.tabela {
     width: 100%;
     max-width: 800px; 
     margin: 30px auto;
@@ -65,7 +65,7 @@ a:hover {
 }
 
 /* Cabeçalho */
-.tabela-produtos th {
+.tabela th {
     background-color: #3a24d9;
     color: white;
     padding: 14px;
@@ -74,19 +74,19 @@ a:hover {
 }
 
 /* Células */
-.tabela-produtos td {
+.tabela td {
     padding: 12px;
     border-bottom: 1px solid #333;
     color: #e0e0e0;
 }
 
 /* Última linha sem borda */
-.tabela-produtos tr:last-child td {
+.tabela tr:last-child td {
     border-bottom: none;
 }
 
 /* Efeito hover */
-.tabela-produtos tr:hover {
+.tabela tr:hover {
     background-color: #2c2c2c;
     transition: 0.2s;
 }

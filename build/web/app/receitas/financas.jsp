@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Produto"%>
+<%@page import="model.Despesa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,16 +14,16 @@
     <body> 
 
         <%@ include file="/app/home/menu.jsp" %>
-        <% ArrayList<Produto> dados = new Produto().getAllTableEntities();%>
+        <% ArrayList<Despesa> dados = new Despesa().getAllTableEntities();%>
 
         <div class="container mt-4">
 
             <div class="text-center">
-                <h2 class="page-title">Produtos</h2>
+                <h2 class="page-title">Finanças</h2>
 
-                <a href="<%= request.getContextPath()%>/app/produtos/formProduto.jsp" 
+                <a href="<%= request.getContextPath()%>/app/receitas/formDespesas.jsp" 
                    class="btn btn-secondary-custom">
-                    Cadastrar Novo Produto
+                    Cadastrar Nova Despesa
                 </a>
 
             </div>
@@ -32,24 +32,26 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Preço</th>
+                    <th>Data</th>
+                    <th>Valor</th>
                     <th></th>
                     <th></th>                    
                 </tr>
 
-                <% for (Produto p : dados) {
-                    if ( usuarioLogado.equals(p.getUsuarios_nome_usuario()) ){%>
+                <% for (Despesa d : dados) {
+                    if ( usuarioLogado.equals(d.getUsuarios_nome_usuario()) ){%>
                         <tr>
-                            <td><%= p.getId()%></td>
-                            <td><%= p.getNome()%></td>
-                            <td><%= p.getPreco()%></td>
+                            <td><%= d.getId()%></td>
+                            <td><%= d.getNome()%></td>
+                            <td><%= d.getData_compra()%></td>
+                            <td><%= d.getValor_total()%></td>
                             <td>
-                                <a href="<%= request.getContextPath()  %>/app/produtos/formProduto.jsp?action=update&id=<%= p.getId()%>">
+                                <a href="<%= request.getContextPath()  %>/app/receitas/formDespesas.jsp?action=update&id=<%= d.getId()%>">
                                     <img src="<%= request.getContextPath()%>/app/img/editar.png">
                                 </a>
                             </td>
                             <td>
-                                <a href="<%= request.getContextPath()%>/home?action=delete&id=<%= p.getId()%>&task=produto" onclick="return confirm('Deseja realmente excluir o produto <%= p.getId()%> (<%= p.getNome() %>) ?')">
+                                <a href="<%= request.getContextPath()%>/home?action=delete&id=<%= d.getId()%>&task=despesa" onclick="return confirm('Deseja realmente excluir a despesa <%= d.getId()%> (<%= d.getNome() %>) ?')">
                                     <img src="<%= request.getContextPath()%>/app/img/apagar.png">
                                 </a>
                             </td>

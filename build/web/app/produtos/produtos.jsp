@@ -8,7 +8,7 @@
         <title>Produtos</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<%= request.getContextPath()%>/app/style/menu.css"/>
-        <link rel="stylesheet" href="<%= request.getContextPath()%>/app/style/produtos.css"/>
+        <link rel="stylesheet" href="<%= request.getContextPath()%>/app/style/pages.css"/>
     </head>
 
     <body> 
@@ -28,7 +28,7 @@
 
             </div>
 
-            <table class="tabela-produtos mt-4">
+            <table class="tabela mt-4">
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
