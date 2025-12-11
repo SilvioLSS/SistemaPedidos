@@ -15,7 +15,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
 
-                        <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/pedidos/pedidos.jsp">Pedidos</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/produtos/produtos.jsp">Produtos</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/clientes/clientes.jsp">Clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath()%>/app/receitas/financas.jsp">Receitas</a></li>

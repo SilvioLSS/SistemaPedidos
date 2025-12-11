@@ -20,7 +20,7 @@
 
             <div class="menu-container">
 
-                <div onclick="location.href = '#'" class="menu-card">
+                <div onclick="location.href = '<%=request.getContextPath()%>/app/pedidos/pedidos.jsp'" class="menu-card">
                     <h3>Pedidos</h3>
                 </div>
 

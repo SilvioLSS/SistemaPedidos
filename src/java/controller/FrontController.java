@@ -9,6 +9,7 @@ import java.io.IOException;
 import logtrack.ExceptionLogTrack;
 import model.Cliente;
 import model.Despesa;
+import model.Pedido;
 import model.Produto;
 import model.Usuario;
 
@@ -40,6 +41,10 @@ public class FrontController extends HttpServlet {
 
                 case "despesa":
                     doGetDespesa(request, response);
+                    break;
+                    
+                case "pedido":
+                    doGetPedido(request, response);
                     break;
 
                 default:
@@ -83,6 +88,10 @@ public class FrontController extends HttpServlet {
 
                 case "despesa":
                     doPostDespesa(request, response);
+                    break;
+                   
+                case "pedido":
+                    doPostPedido(request, response);
                     break;
 
                 default:
@@ -163,6 +172,25 @@ public class FrontController extends HttpServlet {
         }
 
         response.sendRedirect(request.getContextPath() + "/app/receitas/financas.jsp");
+
+    }
+    
+    private void doGetPedido(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String action = request.getParameter("action");
+
+        if (action != null && action.equals("delete")) {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Pedido p = new Pedido();
+            p.setId(id);
+
+            p.delete();
+
+        }
+
+        response.sendRedirect(request.getContextPath() + "/app/pedidos/pedidos.jsp");
 
     }
 
@@ -320,6 +348,45 @@ public class FrontController extends HttpServlet {
         d.save();
 
         response.sendRedirect(request.getContextPath() + "/app/receitas/financas.jsp");
+    }
+    
+    private void doPostPedido(HttpServletRequest request, HttpServletResponse response) throws Exception {         
+
+        String action = request.getParameter("action");
+
+        int idProduto = Integer.parseInt(request.getParameter("id_produto"));
+        int idCliente = Integer.parseInt(request.getParameter("id_cliente"));
+        String status = "Pendente";
+        if("true".equals(request.getParameter("status"))){
+            status = "Concluido";
+        }
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+
+        HttpSession session = request.getSession(false);
+        String usuarioLogado = (String) session.getAttribute("usuario");
+
+        if (usuarioLogado == null) {
+            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+            return;
+        }
+
+        Pedido p = new Pedido();
+
+        if (action.equals("update")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            p.setId(id);
+            p.load();
+        }
+
+        p.setProdutos_id(idProduto);
+        p.setClientes_id(idCliente);
+        p.setStatus(status);
+        p.setQuantidade(quantidade);
+        p.setUsuarios_nome_usuario(usuarioLogado);
+
+        p.save();
+
+        response.sendRedirect(request.getContextPath() + "/app/pedidos/pedidos.jsp");
     }
 
     private void doDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {
