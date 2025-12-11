@@ -46,7 +46,8 @@
 
         <div class="mb-3">
             <label class="form-label">Nome do Cliente</label>
-            <input type="text" name="nome" class="form-control" placeholder="Digite o nome do produto:" value="<%= ((c != null) && (c.getNome() != null)) ? c.getNome() : ""%>" required>
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome do cliente" pattern="[A-Za-zÀ-ÿ\s]{3,}" 
+                       title="O nome deve conter apenas letras e espaços (mínimo 3 caracteres)" value="<%= ((c != null) && (c.getNome() != null)) ? c.getNome() : ""%>" required>
         </div>
 
         <button type="submit" class="btn btn-secondary-custom w-100 mt-2">Cadastrar Cliente</button>

@@ -46,22 +46,22 @@
 
         <div class="mb-3">
             <label class="form-label">ID Produto</label>
-            <input type="number" step="1" name="id_produto" class="form-control" placeholder="Digite o id do produto:"  value="<%= ((p != null) && (p.getProdutos_id()!= 0)) ? p.getProdutos_id(): 0%>" required>
+            <input type="number" step="1" min="1" name="id_produto" class="form-control" placeholder="Digite o id do produto:" title="Digite um número inteiro positivo" value="<%= ((p != null) && (p.getProdutos_id()!= 0)) ? p.getProdutos_id(): 0%>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">ID Cliente</label>
-            <input type="number" step="1" name="id_cliente" class="form-control" placeholder="Digite o id do cliente:"  value="<%= ((p != null) && (p.getClientes_id()!= 0)) ? p.getClientes_id(): 0%>" required>
+            <input type="number" step="1" min="1" name="id_cliente" class="form-control" placeholder="Digite o id do cliente:" title="Digite um número inteiro positivo" value="<%= ((p != null) && (p.getClientes_id()!= 0)) ? p.getClientes_id(): 0%>" required>
         </div>
         
         <div class="mb-3">
             <label class="form-label">Status</label>
-            <input type="checkbox" name="status">
+            <input type="checkbox" name="status" <%= ((p != null) && "Concluido".equals(p.getStatus())) ? "checked" : "" %>>
         </div>
         
         <div class="mb-3">
             <label class="form-label">Quantidade</label>
-            <input type="number" step="1" name="quantidade" class="form-control" placeholder="Digite a quantidade pedida"  value="<%= ((p != null) && (p.getQuantidade()!= 0)) ? p.getQuantidade(): 0%>" required>
+            <input type="number" step="1" min="1" name="quantidade" class="form-control" placeholder="Digite a quantidade pedida" title="Digite um número inteiro positivo" value="<%= ((p != null) && (p.getQuantidade()!= 0)) ? p.getQuantidade(): 0%>" required>
         </div>
 
         <button type="submit" class="btn btn-secondary-custom w-100 mt-2">Cadastrar Pedido</button>

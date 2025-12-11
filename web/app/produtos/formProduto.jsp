@@ -46,12 +46,13 @@
 
         <div class="mb-3">
             <label class="form-label">Nome do Produto</label>
-            <input type="text" name="nome" class="form-control" placeholder="Digite o nome do produto:" value="<%= ((p != null) && (p.getNome() != null)) ? p.getNome() : ""%>" required>
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome do produto:" pattern=".{2,}" 
+                       title="O nome deve ter pelo menos 2 caracteres" value="<%= ((p != null) && (p.getNome() != null)) ? p.getNome() : ""%>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Preço</label>
-            <input type="number" step="0.01" name="preco" class="form-control" placeholder="Digite o preço:"  value="<%= ((p != null) && (p.getPreco() != 0)) ? p.getPreco() : 0%>" required>
+            <input type="number" step="0.01" min="0.01" name="preco" class="form-control" placeholder="Digite o preço:" title="O preço deve ser um número positivo" value="<%= ((p != null) && (p.getPreco() != 0)) ? p.getPreco() : 0%>" required>
         </div>
 
         <button type="submit" class="btn btn-secondary-custom w-100 mt-2">Cadastrar Produto</button>

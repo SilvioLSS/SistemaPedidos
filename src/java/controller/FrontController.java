@@ -356,10 +356,10 @@ public class FrontController extends HttpServlet {
 
         int idProduto = Integer.parseInt(request.getParameter("id_produto"));
         int idCliente = Integer.parseInt(request.getParameter("id_cliente"));
-        String status = "Pendente";
-        if("true".equals(request.getParameter("status"))){
-            status = "Concluido";
-        }
+        
+        String statusParam = request.getParameter("status");
+        String status = (statusParam != null) ? "Concluido" : "Pendente";
+        
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
 
         HttpSession session = request.getSession(false);

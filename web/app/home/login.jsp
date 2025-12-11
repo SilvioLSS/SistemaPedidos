@@ -24,6 +24,18 @@
                 response.sendRedirect(request.getContextPath() + "/app/home/home.jsp");
             }
         %>
+        
+        <% 
+            int id = -1;
+            Cookie[] cookies = request.getCookies();
+            if( cookies != null ) {
+                for( Cookie c : cookies ) {
+                    if( c.getName().equals("id") ) {
+                        id = Integer.parseInt( c.getValue() );
+                    }
+                }
+            }
+        %>
 
 
         <div class="form-container">

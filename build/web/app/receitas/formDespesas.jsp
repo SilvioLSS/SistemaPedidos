@@ -46,17 +46,19 @@
 
         <div class="mb-3">
             <label class="form-label">Nome do produto comprado:</label>
-            <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite o nome do produto:" value="<%= ((d != null) && (d.getNome() != null)) ? d.getNome() : ""%>" required>
+            <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite o nome do produto:"                        pattern=".{2,}" 
+                       title="O nome deve ter pelo menos 2 caracteres" value="<%= ((d != null) && (d.getNome() != null)) ? d.getNome() : ""%>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Data</label>
-            <input type="date" name="data_compra" id="data_compra" class="form-control" value="<%= ((d != null) && (d.getData_compra()!= null)) ? d.getData_compra(): null%>" required>
+            <input type="date" name="data_compra" id="data_compra" class="form-control"                        max="<%= java.time.LocalDate.now() %>"
+                       title="Selecione uma data válida" value="<%= ((d != null) && (d.getData_compra()!= null)) ? d.getData_compra(): null%>" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Preço</label>
-            <input type="number" step="0.01" name="valor_total" id="valor_total" class="form-control" placeholder="Digite o preço:"  value="<%= ((d != null) && (d.getValor_total()!= 0)) ? d.getValor_total(): 0%>" required>
+            <input type="number" step="0.01" min="0.01" name="valor_total" id="valor_total" class="form-control" placeholder="Digite o preço:" title="O valor deve ser um número positivo value="<%= ((d != null) && (d.getValor_total()!= 0)) ? d.getValor_total(): 0%>" required>
         </div>
 
         <button type="submit" class="btn btn-secondary-custom w-100 mt-2">Cadastrar Produto</button>

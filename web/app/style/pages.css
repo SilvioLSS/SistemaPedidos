@@ -91,8 +91,8 @@ a:hover {
     transition: 0.2s;
 }
 
-.tabela-produtos tr td a img {
-    width: 30px; /* tamanho fixo adequado para ícones */
+.tabela tr td a img {
+    width: 30px; 
     height: auto;
     cursor: pointer;
 }

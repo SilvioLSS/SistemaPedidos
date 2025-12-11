@@ -13,7 +13,7 @@
     <body>
         <div class="container">
             <h1>Sistema Gerenciador de Pedidos</h1>
-            <p>O sistema completo para quem trabalha com encomendas: organize pedidos, produtos, clientes e acompanhe suas receitas em um único lugar.</p>
+            <p>O sistema completo para quem trabalha com encomendas: organize pedidos, produtos, clientes e despesas em um único lugar.</p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
                 <a href="app/home/login.jsp" class="btn btn-primary-custom px-4 py-2 text-white fw-semibold">Login</a>
                 <a href="app/home/cadastro.jsp" class="btn btn-secondary-custom px-4 py-2 text-white fw-semibold">Cadastre-se</a>
