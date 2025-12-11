@@ -256,137 +256,165 @@ public class FrontController extends HttpServlet {
 
     private void doPostProduto(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String action = request.getParameter("action");
+        try{
+            String action = request.getParameter("action");
 
-        String nomeProduto = request.getParameter("nome");
-        Float precoProduto = Float.parseFloat(request.getParameter("preco"));
+            String nomeProduto = request.getParameter("nome");
+            Float precoProduto = Float.parseFloat(request.getParameter("preco"));
 
-        HttpSession session = request.getSession(false);
-        String usuarioLogado = (String) session.getAttribute("usuario");
+            HttpSession session = request.getSession(false);
+            String usuarioLogado = (String) session.getAttribute("usuario");
 
-        if (usuarioLogado == null) {
-            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
-            return;
+            if (usuarioLogado == null) {
+                response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+                return;
+            }
+
+            Produto p = new Produto();
+
+            if (action.equals("update")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                p.setId(id);
+                p.load();
+            }
+
+            p.setNome(nomeProduto);
+            p.setPreco(precoProduto);
+            p.setUsuarios_nome_usuario(usuarioLogado);
+
+            p.save();
+
+            response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
+        } catch(Exception e){
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/app/pagina_erro_dados.html");
         }
-
-        Produto p = new Produto();
-
-        if (action.equals("update")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            p.setId(id);
-            p.load();
-        }
-
-        p.setNome(nomeProduto);
-        p.setPreco(precoProduto);
-        p.setUsuarios_nome_usuario(usuarioLogado);
-
-        p.save();
-
-        response.sendRedirect(request.getContextPath() + "/app/produtos/produtos.jsp");
+        
     }
 
     private void doPostCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String action = request.getParameter("action");
+        try{
+            String action = request.getParameter("action");
 
-        String nomeCliente = request.getParameter("nome");
+            String nomeCliente = request.getParameter("nome");
 
-        HttpSession session = request.getSession(false);
-        String usuarioLogado = (String) session.getAttribute("usuario");
+            HttpSession session = request.getSession(false);
+            String usuarioLogado = (String) session.getAttribute("usuario");
 
-        if (usuarioLogado == null) {
-            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
-            return;
+            if (usuarioLogado == null) {
+                response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+                return;
+            }
+
+            Cliente c = new Cliente();
+
+            if (action.equals("update")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                c.setId(id);
+                c.load();
+            }
+
+            c.setNome(nomeCliente);
+            c.setUsuarios_nome_usuario(usuarioLogado);
+
+            c.save();
+
+            response.sendRedirect(request.getContextPath() + "/app/clientes/clientes.jsp");
+        } catch(Exception e){
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/app/pagina_erro_dados.html");
         }
-
-        Cliente c = new Cliente();
-
-        if (action.equals("update")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            c.setId(id);
-            c.load();
-        }
-
-        c.setNome(nomeCliente);
-        c.setUsuarios_nome_usuario(usuarioLogado);
-
-        c.save();
-
-        response.sendRedirect(request.getContextPath() + "/app/clientes/clientes.jsp");
+        
     }
 
     private void doPostDespesa(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String action = request.getParameter("action");
+        try{
+            
+            String action = request.getParameter("action");
 
-        String nomeDespesa = request.getParameter("nome");
-        String dataCompra = request.getParameter("data_compra");
-        float valorTotal = Float.parseFloat(request.getParameter("valor_total"));
+            String nomeDespesa = request.getParameter("nome");
+            String dataCompra = request.getParameter("data_compra");
+            float valorTotal = Float.parseFloat(request.getParameter("valor_total"));
 
-        HttpSession session = request.getSession(false);
-        String usuarioLogado = (String) session.getAttribute("usuario");
+            HttpSession session = request.getSession(false);
+            String usuarioLogado = (String) session.getAttribute("usuario");
 
-        if (usuarioLogado == null) {
-            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
-            return;
+            if (usuarioLogado == null) {
+                response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+                return;
+            }
+
+            Despesa d = new Despesa();
+
+            if (action.equals("update")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                d.setId(id);
+                d.load();
+            }
+
+            d.setNome(nomeDespesa);
+            d.setData_compra(dataCompra);
+            d.setValor_total(valorTotal);
+            d.setUsuarios_nome_usuario(usuarioLogado);
+
+            d.save();
+
+            response.sendRedirect(request.getContextPath() + "/app/receitas/financas.jsp");
+            
+        } catch (Exception e){
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/app/pagina_erro_dados.html");
         }
 
-        Despesa d = new Despesa();
-
-        if (action.equals("update")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            d.setId(id);
-            d.load();
-        }
-
-        d.setNome(nomeDespesa);
-        d.setData_compra(dataCompra);
-        d.setValor_total(valorTotal);
-        d.setUsuarios_nome_usuario(usuarioLogado);
-
-        d.save();
-
-        response.sendRedirect(request.getContextPath() + "/app/receitas/financas.jsp");
     }
     
     private void doPostPedido(HttpServletRequest request, HttpServletResponse response) throws Exception {         
 
-        String action = request.getParameter("action");
+        try{
+            
+            String action = request.getParameter("action");
 
-        int idProduto = Integer.parseInt(request.getParameter("id_produto"));
-        int idCliente = Integer.parseInt(request.getParameter("id_cliente"));
-        
-        String statusParam = request.getParameter("status");
-        String status = (statusParam != null) ? "Concluido" : "Pendente";
-        
-        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+            int idProduto = Integer.parseInt(request.getParameter("id_produto"));
+            int idCliente = Integer.parseInt(request.getParameter("id_cliente"));
 
-        HttpSession session = request.getSession(false);
-        String usuarioLogado = (String) session.getAttribute("usuario");
+            String statusParam = request.getParameter("status");
+            String status = (statusParam != null) ? "Concluido" : "Pendente";
 
-        if (usuarioLogado == null) {
-            response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
-            return;
+            int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+
+            HttpSession session = request.getSession(false);
+            String usuarioLogado = (String) session.getAttribute("usuario");
+
+            if (usuarioLogado == null) {
+                response.sendRedirect(request.getContextPath() + "/app/home/login.jsp");
+                return;
+            }
+
+            Pedido p = new Pedido();
+
+            if (action.equals("update")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                p.setId(id);
+                p.load();
+            }
+
+            p.setProdutos_id(idProduto);
+            p.setClientes_id(idCliente);
+            p.setStatus(status);
+            p.setQuantidade(quantidade);
+            p.setUsuarios_nome_usuario(usuarioLogado);
+
+            p.save();
+
+            response.sendRedirect(request.getContextPath() + "/app/pedidos/pedidos.jsp");
+            
+        } catch (Exception e){
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/app/pagina_erro_dados.html");
+            
         }
-
-        Pedido p = new Pedido();
-
-        if (action.equals("update")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            p.setId(id);
-            p.load();
-        }
-
-        p.setProdutos_id(idProduto);
-        p.setClientes_id(idCliente);
-        p.setStatus(status);
-        p.setQuantidade(quantidade);
-        p.setUsuarios_nome_usuario(usuarioLogado);
-
-        p.save();
-
-        response.sendRedirect(request.getContextPath() + "/app/pedidos/pedidos.jsp");
     }
 
     private void doDefault(HttpServletRequest request, HttpServletResponse response) throws Exception {

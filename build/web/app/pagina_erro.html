@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro 404 - Página não encontrada</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sansation&family=Space+Mono&family=Tomorrow:wght@500&display=swap');
+        
+        body {
+            background-color: #151515;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .error-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(31, 31, 31, 0.7);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .page-title {
+            color: #3a24d9;
+            font-family: "Tomorrow", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            color: #cfcfcf;
+            font-size: 1.1rem;
+            font-family: "Space Mono", monospace;
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn-secondary-custom {
+            background-color: #1b6a18;
+            border: none;
+            transition: 0.2s;
+            font-family: "Sansation", sans-serif;
+            font-weight: 400;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 12px 28px;
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        .btn-secondary-custom:hover {
+            background-color: #268a23;
+            transform: scale(1.05);
+        }
+        
+        a {
+            color: #4b33ff;
+            text-decoration: none;
+            font-family: "Space Mono", monospace;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: #ff3366;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="page-title">Página de Erro</h1>
+        
+        <div class="error-icon">⚠️</div>
+        
+        <p>
+            Esta é uma página de erro. Se você foi direcionado para esta página significa que algum erro aconteceu.
+            A página que você está tentando acessar não existe ou foi movida para outro endereço.
+        </p>
+         
+        <p>
+            Verifique se o endereço digitado está correto ou utilize os links abaixo para navegar pelo site.
+        </p>
+        
+        <button class="btn-secondary-custom" onclick="window.location.href='/SistemaPedidos/app/home/home.jsp'">
+            Voltar para a página inicial
+        </button>
+        
+    </div>
+</body>
+</html>
